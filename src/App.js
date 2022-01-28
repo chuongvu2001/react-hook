@@ -1,27 +1,38 @@
 import { useState } from 'react';
 
-function App() {
-  const [info, setInfo] = useState({
-    name: 'CHUN',
-    age: 20,
-    address: 'Ha Noi'
-  });
+const course = [
+  {
+    id: 1,
+    name: 'Chun'
+  },
+  {
+    id: 2,
+    name: 'Vu'
+  },
+  {
+    id: 3,
+    name: 'DepZai'
+  }
+];
 
-  const handleUpdate = () => {
-    setInfo(prev => (
-      {
-        ...info,
-        bio: "Đẹp zai"
-      }
-    ));
+function App() {
+  const [checked, setChecked] = useState(2);
+
+  const handleSubmit = () => {
+    console.log({
+      id: checked
+    });
   }
 
   return (
     <div className='App'>
-      <h1>
-        {JSON.stringify(info)}
-      </h1>
-      <button onClick={handleUpdate}>Update</button>
+      {course.map(cour => (
+        <div key={cour.id}>
+          <input type="radio" checked={checked === cour.id} onChange={() => setChecked(cour.id)} />
+          {cour.name}
+        </div>
+      ))}
+      <button onClick={handleSubmit}>Register</button>
     </div>
   );
 }
